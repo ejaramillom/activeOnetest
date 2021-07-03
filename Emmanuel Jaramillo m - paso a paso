@@ -1,0 +1,138 @@
+ejercicio 1
+
+- crear funcion anagrama con arrow function ECMAs 6
+- llamar los dos string a y b
+- almacenar en un array la cantidad de caracteres que tiene cada uno. Ej (si a tiene 3 letras e, que alacene en un array ese numero, en forma de llave, letra y cantidad)
+edit = si se ordena alfabeticamente el string despues de split y se comparan es posible que se cumpla
+- comparar el array de a y el array de b, si son iguales son anagrama, de lo contrario no son anagramas.
+
+Extra
+
+- Buscar una funcion de comparacion directa entre los dos string (que valide incluso el case sensitive) como map o algo similar.
+
+Pendiente
+
+- Validar que a y b tengan entre 1 y 50 caracteres
+
+-------------------------------------------------------------------------------------------!
+
+Solucion
+
+a = "anagram";
+b = "margana";
+
+const anagram = (a, b) => {
+
+  arr1 = a.split("").sort((a, b) => a.localeCompare(b));
+  arr2 = b.split("").sort((a, b) => a.localeCompare(b));
+  console.log(arr1, arr2)
+  let count = 0;
+
+  for (var i = 0; i < arr1.length; ++i) {
+    if (arr1[i] !== arr2[i]) {
+     count = count + 1
+    }
+  }
+
+  if (count != 0) {
+    console.log("no anagrama")
+  } else {
+    console.log("anagrama")
+  }
+
+}
+
+console.log(anagram(a, b))
+
+-------------------------------------------------------------------------------------------!
+
+ejercicio 2
+
+- leer el tamano de la matriz (si ex 4x4 almacenar en a = 4 y en  b = 4 )
+edit = no es necesario este paso, la matriz ingresa a la funcion como un array de arrays, ej = [[a, b, c],[d, e, f],[g, h, i]] seria matriz 3x3
+- sumar en loop los valores hasta alcanzar el tamano del objeto
+
+for (let i = 0; i <= matrix.length; i++) {
+  suma a = suma a + elemento
+}
+- invertir la suma arrancando por la ultima columna
+- restar los valores y calcular valor absoluto
+
+
+Solucion
+
+matrix = [[1, 2, 3],[4, 5, 6],[9, 8, 9]];
+// console.log(matrix.length);
+// console.log(matrix[1][1]);
+sumaA = 0;
+sumaB = 0;
+
+const absolute = (matrix) => {
+  for (let i = 0; i <= matrix.length - 1; i++) {
+    sumaA = sumaA + matrix[i][i];
+  }
+
+// aqui esta pendiente identificar la forma correcta de leer la diagonal invertida de la matriz para sumarla y encontrar el valor absoluto de la resta
+
+  for (let i = matrix.length - 1; i >= 0; i--) {
+    // console.log(i);
+    // console.log(matrix[i][i]);
+    sumaB = sumaB + matrix[i][i];
+  }
+  // console.log(sumaA);
+  // console.log(sumaB);
+}
+
+//finalmente mostrar el resultado
+
+console.log(absolute(matrix));
+
+
+-------------------------------------------------------------------------------------------!
+
+ejercicio 3
+
+- leer los valores de los arrays que contienen la distancia a la que caen las frutas, para el ejemplo apples = [2, 3, -4], oranges = [3, -2 -4]
+- leer la ubicacion de la casa de sam, para el ejemplo [s, t] serian [7, 10]
+- leer la ubicacion de los arboles a y b [4, 12]
+
+ubicaciones
+
+origen    arbol a     casa sam        arbol b
+0         4           7     10        12
+
+
+Solucion
+
+apples = [2, 3, -4, -1];
+oranges = [ 3, -2, -4, -12]
+
+const distances = (apples, oranges) => {
+  s = 7;
+  t = 10;
+  a = 4;
+  b = 12;
+  appleDistances = [];
+  orangeDistances = [];
+  appleCount = 0;
+  orangeCount = 0;
+
+  for (let i = 0; i <= apples.length-1; i++) {
+    appleDistances[i] = apples[i] + s + a;
+    if (appleDistances[i] >= 7 && appleDistances[i] <= 10 ) {
+      appleCount = appleCount + 1;
+    }
+  }
+  for (let i = 0; i <= oranges.length-1; i++) {
+    orangeDistances[i] = oranges[i] + t + b;
+    if (orangeDistances[i] >= 7 && orangeDistances[i] <= 10 ) {
+      orangeCount = orangeCount + 1;
+    }
+  }
+  console.log("Distancia de manzanas " + appleDistances);
+  console.log("Distancia de naranjas " + orangeDistances);
+  console.log(appleCount, orangeCount);
+
+}
+
+console.log(distances(apples, oranges));
